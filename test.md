@@ -1,0 +1,1 @@
+I just created this file to demonstrate git status, commit and add
