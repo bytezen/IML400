@@ -70,6 +70,9 @@
     			return $.data( $model, 'choices');
     		}
 
+            $model._getFortunes = function() {
+                return $.data( $model, 'fortunes');
+            }
 
     		// retrieve the choices that are associated with
     		// the current question stored in the model
@@ -131,12 +134,20 @@
     			ind = 0;    			
     		}
 
+            $model.getFortune = function(ind) {
+                var fortunes = $model._getFortunes();
+                return fortunes[ind];
+            }
+
     		
     		//load the model
     		function loadModel(data) {
     			console.log("loading the model");
     			$.data( $model, 'currentQuestion', 0);
     			$.data( $model, 'choices', data.choices);
+                $.data( $model, 'fortunes', data.fortunes);
+
+
     		}
 
     		//----------
@@ -266,17 +277,36 @@
 
     			function revealFortune() {
                     console.log("now it is time to read your fortune");
+                    var totalPinches = 0;
+                    var count = $model.selections.length - 1;
+
+                    for(i=0; i <= count; i++) {
+                        var value = $model.selections[i].value;
+                        
+                        if( isNaN(Number(value)) ) {
+                            value = value.length;
+                        } else {
+                            value = Number(value);
+                        }    
+
+                        console.log( $model.selections[i].id + " , " + value + " " + typeof(value) );
+                        totalPinches += value;
+                    }
+
+                    //get id of the last card selected for the fortune
+                    var fortuneIndex = Number($model.selections[count].id);
+
+                    //if the totalPinches is odd then we read one of the first 4 fortunes. 
+                    // if the totalPinches is even then we read one of the last 4 fortunes 
+
+                    if(totalPinches % 2 == 0) { //true if even
+                        fortuneIndex += 4; // we want indices 4-7 in this case 
+                    }
+
+                    console.log("FORTUNE:: fortuneIndex = " + fortuneIndex + "  " + $model.getFortune(fortuneIndex));
                     $model.fortuneTold = true;
     			};
 
-    			function onChoiceMade() {
-    				//check the current question to make
-    				// sure that is not the last question
-    				// if not then
-    				//advance the question
-    				// else
-    				// reveal the fortune
-    			};
 
     			function newFortune() {
     				//reset the model
@@ -302,15 +332,16 @@
 
 
     		var controller = ctrl.getInstance();
-    		controller.sayHello('Rhazes');
     		controller.initialize();
 
     		//-------
-
+            // load up our data
     		$.getJSON("data/cootie.json", function(data){ 
     				console.log('got json data: ')
     				loadModel(data);
     				
+                    //initialize model
+                    //TODO: Move this to the controller
     				$model._setQuestionIndex(0);
     				//console.log($model.getChoice(0));
     			});
