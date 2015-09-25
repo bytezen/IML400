@@ -24,11 +24,16 @@
             // ---
     		$model.listeners = [];
             $model.selections = [];
+            $model.fortuneTold = false;
 
     		// ---
     		// funcs
     		// ---
     		$model._setQuestionIndex = function(ind) {
+                if(ind >= QUESTION_COUNT) {
+                    return;
+                }
+
     			//set data value
     			$.data($model, 'currentQuestion', ind);
 
@@ -57,7 +62,7 @@
     		}
 
 
-    		$model._getQuestionIndex = function() {
+    		$model.getQuestionIndex = function() {
     			return $.data( $model, 'currentQuestion');
     		}
 
@@ -69,7 +74,7 @@
     		// retrieve the choices that are associated with
     		// the current question stored in the model
     		$model.getCurrentChoices = function() {
-    			var ind = $model._getQuestionIndex();
+    			var ind = $model.getQuestionIndex();
     			var choices = $model._getChoices();
     			
     			if(ind < choices.length) {
@@ -95,26 +100,24 @@
     		// if there are no more questions than 
     		// this will return to the first question
     		$model.advanceQuestion = function() {
-    			var ind = $model._getQuestionIndex();
+    			var ind = $model.getQuestionIndex();
     			var choices = $model._getChoices();
 
     			ind++;
     			//ind = ind % QUESTION_COUNT;
-
-    			// Make sure the index does not go beyond
-    			// the last question
-    			if(ind >= QUESTION_COUNT) {
-    				ind = QUESTION_COUNT - 1;
-    			}
-
-				$model._setQuestionIndex(ind);
+    			
+                $model._setQuestionIndex(ind);
+    			
+				
     		}
 
-            $model.addSelection = function(value) {
-                $model.selections.push(value);
+            $model.addSelection = function(sel) {
+                $model.selections.push(sel);
 
-                //trigger each listener that selection has changed
-                var e = $.Event('change:selections', {'newValue': value});                 
+                //create a selections change event with the selection value
+                var e = $.Event('change:selections', {'newValue': sel});
+
+                //trigger each listener that selection has changed                 
                 $.each($model.listeners, function(ind,lstnr){
                     console.log('   ... firing event: ' + e.type);
                     console.log('\t\t listener --> ' + lstnr.prop('id'));
@@ -150,6 +153,7 @@
     				obj.registerView = registerView;
     				obj.initialize = initialize;
                     obj.onClickCard = onClickCard;
+                    obj.revealFortune = revealFortune;
     				return obj;
     			}
 
@@ -213,22 +217,45 @@
     				//------------------
     				// bind the HUD to the selections
                     $hud.on('change:selections', function(e){
-                        $(this).append(e.newValue);
+                        var $p = $("<p></p>");
+                        $p.append(e.newValue.value);
+                        $p.addClass("selections");
+
+                        $(this).append($p);
                         console.log('HUD change Selections');
                     });
+
                     this.registerView($hud);
     				//initialize model
-    				//initialize view values - automagic
 
     			}
 
     			function sayHello(s) { console.log("Hello " + s)};
 
-                function onClickCard(elem) {
-                    console.log('YOU SELECTED >>>> ' + elem.innerHTML);
-                    // add this to the model list of selections
-                    $model.addSelection(elem.innerHTML);
+                function onClickCard(elem) {                    
+                    var cardId = elem.id.charAt(elem.id.length-1);
+                    console.log("**** " + cardId);
+
+                    if($model.getQuestionIndex() < QUESTION_COUNT - 1) {
+                        var selObj = {'id' : cardId,
+                                      'value' : elem.innerHTML};
+                        $model.addSelection(selObj);
+                    } else  {
+                        if(! $model.fortuneTold) {
+                            var selObj = {'id' : cardId,
+                                          'value' : elem.innerHTML};
+                            $model.addSelection(selObj);
+                            
+                                this.revealFortune();
+                                var $p = $("<p></p>");
+                                $p.addClass("fortune");                        
+                        }
+                    }                                           
                 }
+
+                // function onSelectionChanged(elem) {
+
+                // }
 
     			function setQuestionContents() {
     				// get current contents
@@ -238,7 +265,8 @@
     			};
 
     			function revealFortune() {
-
+                    console.log("now it is time to read your fortune");
+                    $model.fortuneTold = true;
     			};
 
     			function onChoiceMade() {
