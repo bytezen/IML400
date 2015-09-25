@@ -10,18 +10,18 @@
     		// -------------
     		// Model 
 
-    		var myModel = $('#model');
+    		var $model = $('#model');
     		var QUESTION_COUNT = 3;
     		var CARD_COUNT = 4;
     		
-    		myModel.listeners = [];
+    		$model.listeners = [];
 
     		// ---
     		// funcs
     		// ---
-    		myModel._setQuestionIndex = function(ind) {
+    		$model._setQuestionIndex = function(ind) {
     			//set data value
-    			$.data(myModel, 'currentQuestion', ind);
+    			$.data($model, 'currentQuestion', ind);
 
     			//alert listeners that data has changed
     			console.log('setting question index and...');
@@ -30,15 +30,15 @@
     			
     			//create events for each card
     			for(i=0; i < CARD_COUNT;i++) {
-    				events.push( $.Event(eventName + i, {'newValue': myModel.getChoice(i)}) );
+    				events.push( $.Event(eventName + i, {'newValue': $model.getChoice(i)}) );
     			}	
     			
 
     			//trigger each listener with an event that a card has changed
-    			$.each(myModel.listeners, function(ind,lstnr){
+    			$.each($model.listeners, function(ind,lstnr){
     				var e = events[ind];
 
-    				//$.Event("change:choice1", {'newValue': myModel.getChoice(ind)});    			
+    				//$.Event("change:choice1", {'newValue': $model.getChoice(ind)});    			
 
     				console.log('	... firing events');    				
     				lstnr.trigger(e);
@@ -49,20 +49,20 @@
 
     		}
 
-    		myModel._getQuestionIndex = function() {
-    			return $.data( myModel, 'currentQuestion');
+    		$model._getQuestionIndex = function() {
+    			return $.data( $model, 'currentQuestion');
     		}
 
-    		myModel._getChoices = function() {
-    			return $.data( myModel, 'choices');
+    		$model._getChoices = function() {
+    			return $.data( $model, 'choices');
     		}
 
 
     		// retrieve the choices that are associated with
     		// the current question stored in the model
-    		myModel.getCurrentChoices = function() {
-    			var ind = myModel._getQuestionIndex();
-    			var choices = myModel._getChoices();
+    		$model.getCurrentChoices = function() {
+    			var ind = $model._getQuestionIndex();
+    			var choices = $model._getChoices();
     			
     			if(ind < choices.length) {
     				return choices[ind];	
@@ -73,8 +73,8 @@
     		}
 
     		// get a specific choice from the current choices
-    		myModel.getChoice = function(ind) {
-    			var choices = myModel.getCurrentChoices();
+    		$model.getChoice = function(ind) {
+    			var choices = $model.getCurrentChoices();
     			//console.log("{getChoice} choices " + choices[ind].value + " ind = " + ind);
     			if(ind < choices.length) {
     				return choices[ind].value;
@@ -86,9 +86,9 @@
     		// set up the model to get the next question
     		// if there are no more questions than 
     		// this will return to the first question
-    		myModel.advanceQuestion = function() {
-    			var ind = myModel._getQuestionIndex();
-    			var choices = myModel._getChoices();
+    		$model.advanceQuestion = function() {
+    			var ind = $model._getQuestionIndex();
+    			var choices = $model._getChoices();
 
     			ind++;
     			//ind = ind % QUESTION_COUNT;
@@ -99,11 +99,11 @@
     				ind = QUESTION_COUNT - 1;
     			}
 
-				myModel._setQuestionIndex(ind);
+				$model._setQuestionIndex(ind);
 
     		}
 
-    		myModel.resetModel = function() {
+    		$model.resetModel = function() {
     			ind = 0;    			
     		}
 
@@ -111,8 +111,8 @@
     		//load the model
     		function loadModel(data) {
     			console.log("loading the model");
-    			$.data( myModel, 'currentQuestion', 0);
-    			$.data( myModel, 'choices', data.choices);
+    			$.data( $model, 'currentQuestion', 0);
+    			$.data( $model, 'choices', data.choices);
     		}
 
     		//----------
@@ -197,6 +197,7 @@
 
                 function onClickCard(elem) {
                     console.log('YOU SELECTED >>>> ' + elem.innerHTML);
+                    // add this to the model list of selections
                 }
 
     			function setQuestionContents() {
@@ -224,8 +225,8 @@
     			};
 
     			function registerView(elem) {    				
-    				if(myModel.listeners.indexOf(elem) < 0) {
-    					myModel.listeners.push(elem);
+    				if($model.listeners.indexOf(elem) < 0) {
+    					$model.listeners.push(elem);
     				}
     			};
 
@@ -252,19 +253,19 @@
     				console.log('got json data: ')
     				loadModel(data);
     				
-    				myModel._setQuestionIndex(0);
-    				//console.log(myModel.getChoice(0));
+    				$model._setQuestionIndex(0);
+    				//console.log($model.getChoice(0));
     			});
 
 
     		$(document).on('click',function(e){
     			console.log("got document click event" + e);
-    			myModel.advanceQuestion();
+    			$model.advanceQuestion();
     		});
 
     		$('#test').click(function(){
-    			myModel.advanceQuestion();
-    			console.log(myModel.getCurrentChoices()[0]);
+    			$model.advanceQuestion();
+    			console.log($model.getCurrentChoices()[0]);
     		});
 
     	});
