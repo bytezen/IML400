@@ -52,7 +52,6 @@
     			$.each($model.listeners, function(ind,lstnr){
     				var e = events[ind];
 
-    				//$.Event("change:choice1", {'newValue': $model.getChoice(ind)});    			
                     if(e) {
                         console.log('   ... firing event: ' + e.type);
                         lstnr.trigger(e);                        
@@ -91,7 +90,7 @@
     		// get a specific choice from the current choices
     		$model.getChoice = function(ind) {
     			var choices = $model.getCurrentChoices();
-    			//console.log("{getChoice} choices " + choices[ind].value + " ind = " + ind);
+
     			if(ind < choices.length) {
     				return choices[ind].value;
     			}
@@ -105,9 +104,7 @@
     			var ind = $model.getQuestionIndex();
     			var choices = $model._getChoices();
 
-    			ind++;
-    			//ind = ind % QUESTION_COUNT;
-    			
+    			ind++;    			    			
                 $model._setQuestionIndex(ind);				
     		}
 
@@ -122,8 +119,6 @@
                     console.log('   ... firing event: ' + e.type);
                     console.log('\t\t listener --> ' + lstnr.prop('id'));
                     lstnr.trigger(e);
-                    // console.log('    ... firing events');
-                    // lstnr.trigger(e2);
                 });
             }
 
@@ -349,19 +344,7 @@
                     //initialize model
                     //TODO: Move this to the controller
     				$model._setQuestionIndex(0);
-    				//console.log($model.getChoice(0));
     			});
-
-
-    		// $(document).on('click',function(e){
-    		// 	console.log("got document click event" + e);
-    		// 	$model.advanceQuestion();
-    		// });
-
-    		// $('#test').click(function(){
-    		// 	$model.advanceQuestion();
-    		// 	console.log($model.getCurrentChoices()[0]);
-    		// });
 
     	});
     </script>
