@@ -100,8 +100,7 @@
     		}
 
     		// set up the model to get the next question
-    		// if there are no more questions than 
-    		// this will return to the first question
+    		// if there are no more questions than     		
     		$model.advanceQuestion = function() {
     			var ind = $model.getQuestionIndex();
     			var choices = $model._getChoices();
@@ -109,9 +108,7 @@
     			ind++;
     			//ind = ind % QUESTION_COUNT;
     			
-                $model._setQuestionIndex(ind);
-    			
-				
+                $model._setQuestionIndex(ind);				
     		}
 
             $model.addSelection = function(sel) {
@@ -129,7 +126,6 @@
                     // lstnr.trigger(e2);
                 });
             }
-
 
             $model.getFortune = function(ind) {
                 var fortunes = $model._getFortunes();
@@ -244,6 +240,8 @@
                     // click handler for the FortuneHUD
                     $fortuneHUD.on('click', function(e) {
                         $fortuneHUD.toggle();
+                        $fortuneHUD.html('');
+                        $hud.html('');
                         ctrlHandle.reset();
                     });
 
@@ -270,7 +268,8 @@
                                 var $p = $("<p></p>");
                                 $p.addClass("fortune");                        
                         }
-                    }                                           
+                    }
+                    $model.advanceQuestion();                                           
                 }
 
     			function revealFortune() {
@@ -314,7 +313,9 @@
 
     			function reset() {
     				//reset the model
-                    $model.resetModel();
+                    $model.selections = [];
+                    $model.fortuneTold = false;
+                    $model._setQuestionIndex(0);                    
     			};
 
     			function registerView(elem) {    				
@@ -352,15 +353,15 @@
     			});
 
 
-    		$(document).on('click',function(e){
-    			console.log("got document click event" + e);
-    			$model.advanceQuestion();
-    		});
+    		// $(document).on('click',function(e){
+    		// 	console.log("got document click event" + e);
+    		// 	$model.advanceQuestion();
+    		// });
 
-    		$('#test').click(function(){
-    			$model.advanceQuestion();
-    			console.log($model.getCurrentChoices()[0]);
-    		});
+    		// $('#test').click(function(){
+    		// 	$model.advanceQuestion();
+    		// 	console.log($model.getCurrentChoices()[0]);
+    		// });
 
     	});
     </script>
