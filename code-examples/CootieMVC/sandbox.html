@@ -6,6 +6,11 @@
     <script>
 
     	$(document).ready(function(){
+            // -- cool jQuery hack to test for existence:
+            // src: http://stackoverflow.com/questions/920236/how-can-i-detect-if-a-selector-returns-null
+            $.fn.exists = function () {
+                return this.length !== 0;
+            }
 
     		// -------------
     		// Model 
@@ -14,7 +19,11 @@
     		var QUESTION_COUNT = 3;
     		var CARD_COUNT = 4;
     		
+            // ---
+            // data vars
+            // ---
     		$model.listeners = [];
+            $model.selections = [];
 
     		// ---
     		// funcs
@@ -39,15 +48,14 @@
     				var e = events[ind];
 
     				//$.Event("change:choice1", {'newValue': $model.getChoice(ind)});    			
-
-    				console.log('	... firing events');    				
-    				lstnr.trigger(e);
-    				// console.log('	... firing events');
-    				// lstnr.trigger(e2);
+                    if(e) {
+                        console.log('   ... firing event: ' + e.type);
+                        lstnr.trigger(e);                        
+                    }
     			});
 
-
     		}
+
 
     		$model._getQuestionIndex = function() {
     			return $.data( $model, 'currentQuestion');
@@ -100,8 +108,21 @@
     			}
 
 				$model._setQuestionIndex(ind);
-
     		}
+
+            $model.addSelection = function(value) {
+                $model.selections.push(value);
+
+                //trigger each listener that selection has changed
+                var e = $.Event('change:selections', {'newValue': value});                 
+                $.each($model.listeners, function(ind,lstnr){
+                    console.log('   ... firing event: ' + e.type);
+                    console.log('\t\t listener --> ' + lstnr.prop('id'));
+                    lstnr.trigger(e);
+                    // console.log('    ... firing events');
+                    // lstnr.trigger(e2);
+                });
+            }
 
     		$model.resetModel = function() {
     			ind = 0;    			
@@ -137,8 +158,13 @@
     				var $card1 = $('#card1');
 					var $card2 = $('#card2');
 					var $card3 = $('#card3');
+                    var $hud   = $('#HUD');
+                    
 
-
+                    if(! ($card0.exists() && 
+                        $card1.exists() && $card2.exists() && $card3.exists() && $hud.exists()) ) {
+                        console.log("### ERROR -- uninitialized jQ selectors ###");
+                    }
     				//------------------
     				//register views
     				
@@ -177,8 +203,7 @@
     				//------------------
     				//click handlers for the card
                     //TODO: find idiomatic way to do this
-                    var ctrlHandle = this;
-                   
+                    var ctrlHandle = this;                   
 
                     $('.card').on('click', function(e) {
                         ctrlHandle.onClickCard(e.target);
@@ -186,8 +211,12 @@
 
 
     				//------------------
-    				
-
+    				// bind the HUD to the selections
+                    $hud.on('change:selections', function(e){
+                        $(this).append(e.newValue);
+                        console.log('HUD change Selections');
+                    });
+                    this.registerView($hud);
     				//initialize model
     				//initialize view values - automagic
 
@@ -198,6 +227,7 @@
                 function onClickCard(elem) {
                     console.log('YOU SELECTED >>>> ' + elem.innerHTML);
                     // add this to the model list of selections
+                    $model.addSelection(elem.innerHTML);
                 }
 
     			function setQuestionContents() {
