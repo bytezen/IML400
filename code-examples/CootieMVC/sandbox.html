@@ -130,9 +130,6 @@
                 });
             }
 
-    		$model.resetModel = function() {
-    			ind = 0;    			
-    		}
 
             $model.getFortune = function(ind) {
                 var fortunes = $model._getFortunes();
@@ -160,11 +157,12 @@
 
     			function createInstance() {
     				var obj = new Object();
-    				obj.sayHello = sayHello;
-    				obj.registerView = registerView;
-    				obj.initialize = initialize;
-                    obj.onClickCard = onClickCard;
-                    obj.revealFortune = revealFortune;
+    				obj.sayHello        = sayHello;
+    				obj.registerView    = registerView;
+    				obj.initialize      = initialize;
+                    obj.onClickCard     = onClickCard;
+                    obj.revealFortune   = revealFortune;
+                    obj.reset           = reset;
     				return obj;
     			}
 
@@ -174,12 +172,16 @@
 					var $card2 = $('#card2');
 					var $card3 = $('#card3');
                     var $hud   = $('#HUD');
+                    var $fortuneHUD = $('#fortuneHUD');
                     
 
                     if(! ($card0.exists() && 
-                        $card1.exists() && $card2.exists() && $card3.exists() && $hud.exists()) ) {
+                        $card1.exists() && $card2.exists() && $card3.exists() && $hud.exists() && $fortuneHUD.exists()) ) {
                         console.log("### ERROR -- uninitialized jQ selectors ###");
                     }
+                    // hide the fortune HUD
+                    $fortuneHUD.toggle();
+
     				//------------------
     				//register views
     				
@@ -237,7 +239,14 @@
                     });
 
                     this.registerView($hud);
-    				//initialize model
+    				
+                    //------------------
+                    // click handler for the FortuneHUD
+                    $fortuneHUD.on('click', function(e) {
+                        $fortuneHUD.toggle();
+                        ctrlHandle.reset();
+                    });
+
 
     			}
 
@@ -263,17 +272,6 @@
                         }
                     }                                           
                 }
-
-                // function onSelectionChanged(elem) {
-
-                // }
-
-    			function setQuestionContents() {
-    				// get current contents
-    				// set the contents of the divs to 
-    				// the model contents
-
-    			};
 
     			function revealFortune() {
                     console.log("now it is time to read your fortune");
@@ -303,13 +301,20 @@
                         fortuneIndex += 4; // we want indices 4-7 in this case 
                     }
 
+
+                    var $fortune = $("<span></span>");
+                    $fortune.addClass("fortune");
+                    $fortune.html($model.getFortune(fortuneIndex));
+                    $('#fortuneHUD').html($fortune);
+                    $('#fortuneHUD').toggle();
+
                     console.log("FORTUNE:: fortuneIndex = " + fortuneIndex + "  " + $model.getFortune(fortuneIndex));
                     $model.fortuneTold = true;
     			};
 
-
-    			function newFortune() {
+    			function reset() {
     				//reset the model
+                    $model.resetModel();
     			};
 
     			function registerView(elem) {    				
@@ -362,13 +367,18 @@
   </head>
   <body>
     <div id="cootieCatcherApp">
+
 	    <div id="controller" class="mvc">This is the controller</div>
 	    <div id="model" class ="mvc">This should be hidden</div>
 		
-		<div id="card0" class="card"></div>
-		<div id="card1" class="card"></div>
-		<div id="card2" class="card"></div>
-		<div id="card3" class="card"></div>	
+        <div id="board">
+    		<div id="card0" class="card"></div>
+    		<div id="card1" class="card"></div>
+    		<div id="card2" class="card"></div>
+    		<div id="card3" class="card"></div>	
+        </div>
+        <div id="fortuneHUD"> <span class="fortune">THIS IS YOUR FORTUNE</span></div>        
+
 	</div>    
 	<div id="HUD">
 

@@ -1,9 +1,20 @@
 
 div {
-	width: 49%;
-	height: 49%;
+	width: 48%;
+	height: 48%;
 	float: left;	
 	margin: 2px;
+}
+
+/*div.card {
+	width: 200px;
+	height: 200px;
+}*/
+
+div#board {
+	background: #222;	
+	width: 390px;
+	height: 390px;	
 }
 
 div#HUD {
@@ -16,9 +27,9 @@ div#HUD {
 div#cootieCatcherApp {
 	background: #ccc;
 	float: left;
-	width: 400px;
+	width: 800px;
 	height: 400px;	
-	padding: 5px;
+	padding: 1px;
 }
 
 div#card0 {
@@ -38,6 +49,26 @@ div#card2 {
 div#card3 {
 	background: #0CC;	
 
+}
+
+div#fortuneHUD {
+	background: #333;
+	opacity: 0.98;
+	text-align: center;
+	position: absolute;	
+	width: 400px;
+	height: 400px;
+}
+
+span.fortune {
+	display: block;	
+	margin-top: 50%;
+	transform: translate(0,-50%);
+	color: #FFF; 	
+}
+
+.selections::before {
+	content: "You selected: ";
 }
 
 .visible {
