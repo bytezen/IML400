@@ -1,0 +1,50 @@
+
+div {
+	width: 49%;
+	height: 49%;
+	float: left;	
+	margin: 2px;
+}
+
+div#HUD {
+	float: left;
+	background: #D99;
+	width: 400px;
+	height: 400px;	
+}
+
+div#cootieCatcherApp {
+	background: #ccc;
+	float: left;
+	width: 400px;
+	height: 400px;	
+	padding: 5px;
+}
+
+div#card0 {
+	background: #C00;
+}
+
+div#card1 {
+	background: #CC0;
+
+}
+
+div#card2 {	
+	background: #0C0;
+
+}
+
+div#card3 {
+	background: #0CC;	
+
+}
+
+.visible {
+	visibility:  ;
+}
+
+.mvc {
+	visibility: hidden;
+	display: none;
+}

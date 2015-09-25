@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+  <head>
+  	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+  	<script type="text/javascript" src="js/lib/jquery-2.1.4.min.js"></script>    
+    <script>
+
+    	$(document).ready(function(){
+
+    		// -------------
+    		// Model 
+
+    		var myModel = $('#model');
+    		var QUESTION_COUNT = 3;
+    		var CARD_COUNT = 4;
+    		
+    		myModel.listeners = [];
+
+    		// ---
+    		// funcs
+    		// ---
+    		myModel._setQuestionIndex = function(ind) {
+    			//set data value
+    			$.data(myModel, 'currentQuestion', ind);
+
+    			//alert listeners that data has changed
+    			console.log('setting question index and...');
+    			var events = [];
+    			var eventName = "change:choice";
+    			
+    			//create events for each card
+    			for(i=0; i < CARD_COUNT;i++) {
+    				events.push( $.Event(eventName + i, {'newValue': myModel.getChoice(i)}) );
+    			}	
+
+    			console.log("{_setQuestionIndex} creating events...");
+    			$.each(events, function(k,v) {console.log(k+" "+ v.type)});
+    			
+
+    			//trigger each listener with an event that a card has changed
+    			$.each(myModel.listeners, function(ind,lstnr){
+    				var e = events[ind];
+
+    				//$.Event("change:choice1", {'newValue': myModel.getChoice(ind)});    			
+
+    				console.log('	... firing events');    				
+    				lstnr.trigger(e);
+    				// console.log('	... firing events');
+    				// lstnr.trigger(e2);
+    			});
+
+
+    		}
+
+    		myModel._getQuestionIndex = function() {
+    			return $.data( myModel, 'currentQuestion');
+    		}
+
+    		myModel._getChoices = function() {
+    			return $.data( myModel, 'choices');
+    		}
+
+
+    		// retrieve the choices that are associated with
+    		// the current question stored in the model
+    		myModel.getCurrentChoices = function() {
+    			var ind = myModel._getQuestionIndex();
+    			var choices = myModel._getChoices();
+    			
+    			if(ind < choices.length) {
+    				return choices[ind];	
+    			} else {
+    				return null;
+    			}
+    			
+    		}
+
+    		// get a specific choice from the current choices
+    		myModel.getChoice = function(ind) {
+    			var choices = myModel.getCurrentChoices();
+    			console.log("{getChoice} choices " + choices[ind].value + " ind = " + ind);
+    			if(ind < choices.length) {
+    				return choices[ind].value;
+    			}
+
+    			return null;
+    		}
+
+    		// set up the model to get the next question
+    		// if there are no more questions than 
+    		// this will return to the first question
+    		myModel.advanceQuestion = function() {
+    			var ind = myModel._getQuestionIndex();
+    			var choices = myModel._getChoices();
+
+    			ind++;
+    			//ind = ind % QUESTION_COUNT;
+
+    			// Make sure the index does not go beyond
+    			// the last question
+    			if(ind >= QUESTION_COUNT) {
+    				ind = QUESTION_COUNT - 1;
+    			}
+
+				myModel._setQuestionIndex(ind);
+
+    		}
+
+    		myModel.resetModel = function() {
+    			ind = 0;    			
+    		}
+
+    		
+    		//load the model
+    		function loadModel(data) {
+    			console.log("loading the model");
+    			$.data( myModel, 'currentQuestion', 0);
+    			$.data( myModel, 'choices', data.choices);
+    		}
+
+    		//----------
+
+			//-------
+    		// Controller
+    		//-------
+    		var ctrl = (function() {
+    			var instance;
+
+    			function createInstance() {
+    				var obj = new Object();
+    				obj.sayHello = sayHello;
+    				obj.registerView = registerView;
+    				obj.initialize = initialize;
+    				return obj;
+    			}
+
+    			function initialize() {
+    				//register views
+    				//card1
+		    		$('#card0').on('change:choice0', function(e){
+    					console.log("{onChange:choice0} newValue = " + e.newValue);
+		    			
+		    			$('#card0').html(e.newValue);
+		    		});
+
+    				this.registerView($('#card0'));
+
+    				//card1
+    				$('#card1').on('change:choice1', function(e){
+    					console.log("{onChange:choice1} newValue = " + e.newValue);
+    					$('#card1').html(e.newValue);
+    				});
+    				this.registerView($('#card1'));
+
+    				//card2
+    				$('#card2').on('change:choice2', function(e){
+    					console.log("{onChange:choice2} newValue = " + e.newValue);    					
+    					$('#card2').html(e.newValue);
+    				});
+    				this.registerView($('#card2'));
+
+					//card3
+    				$('#card3').on('change:choice3', function(e){
+    					console.log("{onChange:choice3} newValue = " + e.newValue);    					
+    					$('#card3').html(e.newValue);
+    				});
+    				this.registerView($('#card3'));
+    				//initialize model
+    				//initialize view values - automagic
+
+    			}
+
+    			function sayHello(s) { console.log("Hello " + s)};
+
+    			function setQuestionContents() {
+    				// get current contents
+    				// set the contents of the divs to 
+    				// the model contents
+
+    			};
+
+    			function revealFortune() {
+
+    			};
+
+    			function onChoiceMade() {
+    				//check the current question to make
+    				// sure that is not the last question
+    				// if not then
+    				//advance the question
+    				// else
+    				// reveal the fortune
+    			};
+
+    			function newFortune() {
+    				//reset the model
+    			};
+
+    			function registerView(elem) {    				
+    				if(myModel.listeners.indexOf(elem) < 0) {
+    					myModel.listeners.push(elem);
+    				}
+    			};
+
+    			return {
+    				getInstance: function() {
+    					if(!instance) {
+    						instance = createInstance();
+    					}
+
+    					return instance;
+    				}
+    			};
+    		})();
+
+
+
+    		var controller = ctrl.getInstance();
+    		controller.sayHello('Rhazes');
+    		controller.initialize();
+
+    		//-------
+
+    		$.getJSON("data/cootie.json", function(data){ 
+    				console.log('got json data: ')
+    				loadModel(data);
+    				
+    				myModel._setQuestionIndex(0);
+    				//console.log(myModel.getChoice(0));
+    			});
+
+
+    		$(document).on('click',function(e){
+    			console.log("got document click event" + e);
+    			myModel.advanceQuestion();
+    		});
+
+    		$('#test').click(function(){
+    			myModel.advanceQuestion();
+    			console.log(myModel.getCurrentChoices()[0]);
+    		});
+
+    	});
+    </script>
+  </head>
+  <body>
+    <div id="cootieCatcherApp">
+	    <div id="controller" class="mvc">This is the controller</div>
+	    <div id="model" class ="mvc">This should be hidden</div>
+		
+		<div id="card0" class="red"></div>
+		<div id="card1" class="yellow"></div>
+		<div id="card2" class="green"></div>
+		<div id="card3" class="cyan"></div>	
+	</div>    
+	<div id="HUD"></div>
+  </body>
+</html>
