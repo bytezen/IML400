@@ -32,9 +32,6 @@
     			for(i=0; i < CARD_COUNT;i++) {
     				events.push( $.Event(eventName + i, {'newValue': myModel.getChoice(i)}) );
     			}	
-
-    			console.log("{_setQuestionIndex} creating events...");
-    			$.each(events, function(k,v) {console.log(k+" "+ v.type)});
     			
 
     			//trigger each listener with an event that a card has changed
@@ -78,7 +75,7 @@
     		// get a specific choice from the current choices
     		myModel.getChoice = function(ind) {
     			var choices = myModel.getCurrentChoices();
-    			console.log("{getChoice} choices " + choices[ind].value + " ind = " + ind);
+    			//console.log("{getChoice} choices " + choices[ind].value + " ind = " + ind);
     			if(ind < choices.length) {
     				return choices[ind].value;
     			}
@@ -131,46 +128,76 @@
     				obj.sayHello = sayHello;
     				obj.registerView = registerView;
     				obj.initialize = initialize;
+                    obj.onClickCard = onClickCard;
     				return obj;
     			}
 
     			function initialize() {
+    				var $card0 = $('#card0');
+    				var $card1 = $('#card1');
+					var $card2 = $('#card2');
+					var $card3 = $('#card3');
+
+
+    				//------------------
     				//register views
+    				
     				//card1
-		    		$('#card0').on('change:choice0', function(e){
+		    		$card0.on('change:choice0', function(e){
     					console.log("{onChange:choice0} newValue = " + e.newValue);
 		    			
-		    			$('#card0').html(e.newValue);
+		    			$card0.html(e.newValue);
 		    		});
 
-    				this.registerView($('#card0'));
+    				this.registerView($card0);
 
     				//card1
-    				$('#card1').on('change:choice1', function(e){
+    				$card1.on('change:choice1', function(e){
     					console.log("{onChange:choice1} newValue = " + e.newValue);
-    					$('#card1').html(e.newValue);
+    					$card1.html(e.newValue);
     				});
-    				this.registerView($('#card1'));
+    				this.registerView($card1);
 
     				//card2
-    				$('#card2').on('change:choice2', function(e){
+    				$card2.on('change:choice2', function(e){
     					console.log("{onChange:choice2} newValue = " + e.newValue);    					
-    					$('#card2').html(e.newValue);
+    					$card2.html(e.newValue);
     				});
-    				this.registerView($('#card2'));
+    				this.registerView($card2);
 
 					//card3
-    				$('#card3').on('change:choice3', function(e){
+    				$card3.on('change:choice3', function(e){
     					console.log("{onChange:choice3} newValue = " + e.newValue);    					
-    					$('#card3').html(e.newValue);
+    					$card3.html(e.newValue);
     				});
-    				this.registerView($('#card3'));
+    				this.registerView($card3);
+
+    				//------------------
+
+    				//------------------
+    				//click handlers for the card
+                    //TODO: find idiomatic way to do this
+                    var ctrlHandle = this;
+                   
+
+                    $('.card').on('click', function(e) {
+                        ctrlHandle.onClickCard(e.target);
+                    });
+
+
+    				//------------------
+    				
+
     				//initialize model
     				//initialize view values - automagic
 
     			}
 
     			function sayHello(s) { console.log("Hello " + s)};
+
+                function onClickCard(elem) {
+                    console.log('YOU SELECTED >>>> ' + elem.innerHTML);
+                }
 
     			function setQuestionContents() {
     				// get current contents
@@ -248,11 +275,13 @@
 	    <div id="controller" class="mvc">This is the controller</div>
 	    <div id="model" class ="mvc">This should be hidden</div>
 		
-		<div id="card0" class="red"></div>
-		<div id="card1" class="yellow"></div>
-		<div id="card2" class="green"></div>
-		<div id="card3" class="cyan"></div>	
+		<div id="card0" class="card"></div>
+		<div id="card1" class="card"></div>
+		<div id="card2" class="card"></div>
+		<div id="card3" class="card"></div>	
 	</div>    
-	<div id="HUD"></div>
+	<div id="HUD">
+
+	</div>
   </body>
 </html>
