@@ -22,12 +22,16 @@
             // ---
             // data vars
             // ---
+            //These are view components that are listenting for changes in the model
     		$model.listeners = [];
+            //This is an array that will store the user's selections
             $model.selections = [];
+            //Have we already told the user our wisdom?
             $model.fortuneTold = false;
 
     		// ---
-    		// funcs
+    		// funcs - Controller will use these to change the model and
+            //         to read values from the model as necessary
     		// ---
     		$model._setQuestionIndex = function(ind) {
                 if(ind >= QUESTION_COUNT) {
@@ -35,7 +39,10 @@
                 }
 
     			//set data value
+                // jQuery utility for attaching data to an element
     			$.data($model, 'currentQuestion', ind);
+                //This is the same as above:
+                //     jQuery.data($model, 'currentQuestion', ind);
 
     			//alert listeners that data has changed
     			console.log('setting question index and...');
@@ -129,6 +136,8 @@
 
     		
     		//load the model
+            //at the end of this step the <div id="model"> will
+            // have my JSON data attached to it
     		function loadModel(data) {
     			console.log("loading the model");
     			$.data( $model, 'currentQuestion', 0);
@@ -144,24 +153,27 @@
     		// Controller
     		//-------
     		var ctrl = (function() {
-    			var instance;
+                var instance;
 
-    			function createInstance() {
-    				var obj = new Object();
-    				obj.sayHello        = sayHello;
-    				obj.registerView    = registerView;
-    				obj.initialize      = initialize;
+                //THIS INSTANCE IS THE CONTROLLER
+                
+                function createInstance() {
+                    var obj = new Object();
+                    obj.sayHello        = sayHello;
+                    obj.registerView    = registerView;
+                    obj.initialize      = initialize;
                     obj.onClickCard     = onClickCard;
                     obj.revealFortune   = revealFortune;
                     obj.reset           = reset;
-    				return obj;
-    			}
-
-    			function initialize() {
-    				var $card0 = $('#card0');
-    				var $card1 = $('#card1');
-					var $card2 = $('#card2');
-					var $card3 = $('#card3');
+                    return obj;
+                }
+                
+                // Setup the controller
+                function initialize() {
+                    var $card0 = $('#card0');
+                    var $card1 = $('#card1');
+                    var $card2 = $('#card2');
+                    var $card3 = $('#card3');
                     var $hud   = $('#HUD');
                     var $fortuneHUD = $('#fortuneHUD');
                     
@@ -173,43 +185,43 @@
                     // hide the fortune HUD
                     $fortuneHUD.toggle();
 
-    				//------------------
-    				//register views
-    				
-    				//card1
-		    		$card0.on('change:choice0', function(e){
-    					console.log("{onChange:choice0} newValue = " + e.newValue);
-		    			
-		    			$card0.html(e.newValue);
-		    		});
+                    //------------------
+                    //register views
+                    
+                    //card1
+                    $card0.on('change:choice0', function(e){
+                        console.log("{onChange:choice0} newValue = " + e.newValue);
+                        
+                        $card0.html(e.newValue);
+                    });
 
-    				this.registerView($card0);
+                    this.registerView($card0);
 
-    				//card1
-    				$card1.on('change:choice1', function(e){
-    					console.log("{onChange:choice1} newValue = " + e.newValue);
-    					$card1.html(e.newValue);
-    				});
-    				this.registerView($card1);
+                    //card1
+                    $card1.on('change:choice1', function(e){
+                        console.log("{onChange:choice1} newValue = " + e.newValue);
+                        $card1.html(e.newValue);
+                    });
+                    this.registerView($card1);
 
-    				//card2
-    				$card2.on('change:choice2', function(e){
-    					console.log("{onChange:choice2} newValue = " + e.newValue);    					
-    					$card2.html(e.newValue);
-    				});
-    				this.registerView($card2);
+                    //card2
+                    $card2.on('change:choice2', function(e){
+                        console.log("{onChange:choice2} newValue = " + e.newValue);                     
+                        $card2.html(e.newValue);
+                    });
+                    this.registerView($card2);
 
-					//card3
-    				$card3.on('change:choice3', function(e){
-    					console.log("{onChange:choice3} newValue = " + e.newValue);    					
-    					$card3.html(e.newValue);
-    				});
-    				this.registerView($card3);
+                    //card3
+                    $card3.on('change:choice3', function(e){
+                        console.log("{onChange:choice3} newValue = " + e.newValue);                     
+                        $card3.html(e.newValue);
+                    });
+                    this.registerView($card3);
 
-    				//------------------
+                    //------------------
 
-    				//------------------
-    				//click handlers for the card
+                    //------------------
+                    //click handlers for the card
                     //TODO: find idiomatic way to do this
                     var ctrlHandle = this;                   
 
@@ -218,8 +230,8 @@
                     });
 
 
-    				//------------------
-    				// bind the HUD to the selections
+                    //------------------
+                    // bind the HUD to the selections
                     $hud.on('change:selections', function(e){
                         var $p = $("<p></p>");
                         $p.append(e.newValue.value);
@@ -230,7 +242,7 @@
                     });
 
                     this.registerView($hud);
-    				
+                    
                     //------------------
                     // click handler for the FortuneHUD
                     $fortuneHUD.on('click', function(e) {
@@ -241,9 +253,9 @@
                     });
 
 
-    			}
+                }
 
-    			function sayHello(s) { console.log("Hello " + s)};
+                function sayHello(s) { console.log("Hello " + s)};
 
                 function onClickCard(elem) {                    
                     var cardId = elem.id.charAt(elem.id.length-1);
@@ -267,7 +279,7 @@
                     $model.advanceQuestion();                                           
                 }
 
-    			function revealFortune() {
+                function revealFortune() {
                     console.log("now it is time to read your fortune");
                     var totalPinches = 0;
                     var count = $model.selections.length - 1;
@@ -304,33 +316,37 @@
 
                     console.log("FORTUNE:: fortuneIndex = " + fortuneIndex + "  " + $model.getFortune(fortuneIndex));
                     $model.fortuneTold = true;
-    			};
+                };
 
-    			function reset() {
-    				//reset the model
+                function reset() {
+                    //reset the model
                     $model.selections = [];
                     $model.fortuneTold = false;
                     $model._setQuestionIndex(0);                    
-    			};
+                };
 
-    			function registerView(elem) {    				
-    				if($model.listeners.indexOf(elem) < 0) {
-    					$model.listeners.push(elem);
-    				}
-    			};
+                function registerView(elem) {                   
+                    if($model.listeners.indexOf(elem) < 0) {
+                        $model.listeners.push(elem);
+                    }
+                };
 
-    			return {
-    				getInstance: function() {
-    					if(!instance) {
-    						instance = createInstance();
-    					}
+                return {
+                    getInstance: function() {
+                        if(!instance) {
+                            instance = createInstance();
+                        }
+                        return instance;
+                    }
+                };
+            })();
 
-    					return instance;
-    				}
-    			};
-    		})();
 
-
+            //-------------------------
+            //-------------------------
+            // THIS IS WHAT KICKS THE WHOLE PARTY OFF!!!
+            //-------------------------
+            //-------------------------                 
 
     		var controller = ctrl.getInstance();
     		controller.initialize();
@@ -356,7 +372,6 @@
 	    <div id="model" class ="mvc">This should be hidden</div>
 		
         <div id="board">
-    		<div id="card0" class="card"></div>
     		<div id="card1" class="card"></div>
     		<div id="card2" class="card"></div>
     		<div id="card3" class="card"></div>	

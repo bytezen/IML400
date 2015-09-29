@@ -2,8 +2,8 @@
 	"choices" : [
 					[
 						{"value": "red"},
-						{"value": "green"},
 						{"value": "yellow"},
+						{"value": "green"},
 						{"value": "cyan"}
 					 ],
 					[
