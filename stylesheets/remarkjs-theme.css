@@ -1,8 +1,30 @@
+/* -- Google Fonts
       @import url(//fonts.googleapis.com/css?family=Droid+Serif);
       @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+*/
 
-      body {
+
+/* -- Load fonts locally because sometimes we ain't got internets -- */
+      @font-face {
+        font-family: 'Yanone Kaffeesatz';
+        src: url('YanoneKaffeesatz-Regular.ttf'); /* IE9 Compat Modes */
+        src: url('YanoneKaffeesatz-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */             
+      }
+
+      @font-face {
+        font-family: 'Droid Serif';
+        src: url('DroidSerif.ttf'); /* IE9 Compat Modes */
+        src: url('DroidSerif.ttf')  format('truetype'), /* Safari, Android, iOS */             
+      }
+
+      @font-face {
+        font-family: 'Ubuntu Mono';
+        src: url('UbuntuMonoRegular.ttf'); /* IE9 Compat Modes */
+        src: url('UbuntuMonoRegular.ttf')  format('truetype'), /* Safari, Android, iOS */             
+      }
+
+      body {      
         font-family: 'Droid Serif';
       }
       h1, h2, h3 {
