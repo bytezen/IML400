@@ -391,8 +391,62 @@ template: inverse
 ## 5. Workshop
 
 ---
-
 layout: false
+class: center, middle
+
+## today we are going to get introduced to Git and setup your course sites
+
+---
+
+.left-column[
+## Git Account  
+]
+
+.right-column[
+## Sign-up for Git
+1. Get a [git account](http://github.com) if you do not have one already
+2. Send me an email with: 
+  1. a subject of '__IML400__',
+  2. your preferred name if it is different than what I have on the roster,  
+  and
+  3. your Github userId  
+   
+]
+
+---
+
+.left-column[
+## Install Git  
+]
+
+.right-column[
+## Instructions:
+[Git Installation](http://github.com/bytezen/IML400/wiki/install-git)
+]
+
+---
+
+.left-column[
+## Git 001
+]
+
+.right-column[
+## In class...
+we are going to walk through some of the basics of Git using the command line.  
+This will be both a tutorial on the CLI and Git
+
+## Resources
+Additional resources to help you outside of class:
+* [Try Git](https://try.github.io)  
+
+* [Mac Command Line Basics](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line)  
+
+* [Windows Basic DOS Commands](https://www.sophos.com/en-us/support/knowledgebase/13195.aspx)
+
+]
+
+
+---
 
 .right-column[
 ## Build a simple webpage about your favorite animal
@@ -426,29 +480,5 @@ Your [spirit animal](http://www.spiritanimal.info/spirit-animal-quiz/)
 
 template: inverse
 
-## 6. Assignment & Reading
+## 6. For Next Time
 
----
-
-layout: false
-
-.left-column[
-# For next week
-]
-
-.right-column[
-## Reading
-["As We May Think"](http://bit.do/vannevarBush) by Vannevar Bush
-[Aesthetics of the Internet](http://joi.ito.com/weblog/1997/06/19/aesthetics-of-t.html)
-
-## Work through
-1. [Code Academy HTML & CSS](https://www.codecademy.com/tracks/web)
-2. [Markdown Tutorial](http://markdowntutorial.com)
-
-### extra
-* [Code Academy Javascript](https://www.codecademy.com/en/tracks/javascript)  
-stop after Arrays section.
-
-* Also take a look at [Stack Edit](https://stackedit.io). They have a good example of Markdown as the default page on their editor.
-
-]
