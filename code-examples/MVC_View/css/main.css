@@ -1,0 +1,17 @@
+
+div {
+	float: left;	
+	background: #DDD;
+}
+
+div#canvas {
+	background: #DD00AA;
+	width: 300px;
+	height: 300px;
+
+}
+
+button { 
+	float: left;
+	margin-top: 30%;
+}

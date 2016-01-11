@@ -1,0 +1,83 @@
+
+div {
+	width: 48%;
+	height: 48%;
+	float: left;	
+	margin: 2px;
+}
+
+/*div.card {
+	width: 200px;
+	height: 200px;
+}*/
+
+div#board {
+	background: #222;	
+	width: 390px;
+	height: 390px;	
+	float: left;
+}
+
+div#HUD {
+	float: left;
+	background: #D99;
+	width: 400px;
+	height: 400px;	
+}
+
+div#cootieCatcherApp {
+	background: #ccc;
+	/*float: left;*/
+	width: 800px;
+	height: 400px;	
+	padding: 1px;
+}
+
+div#card0 {
+	background: #C00;
+}
+
+div#card1 {
+	background: #CC0;
+
+}
+
+div#card2 {	
+	background: #0C0;
+
+}
+
+div#card3 {
+	background: #0CC;	
+
+}
+
+div#fortuneHUD {
+	background: #333;
+	opacity: 0.98;
+	text-align: center;
+	position: absolute;	
+	width: 800px;
+	height: 400px;
+}
+
+span.fortune {
+	display: block;
+	/* not sure why this is not 50% ?? */	
+	margin-top: 25%;
+	transform: translate(0,-50%);
+	color: #FFF; 	
+}
+
+.selections::before {
+	content: "You selected: ";
+}
+
+.visible {
+	visibility:  ;
+}
+
+.mvc {
+	visibility: hidden;
+	display: none;
+}

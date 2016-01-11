@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+  	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+  	<script type="text/javascript" src="js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+  </head>
+  <body>
+    <div ng-app="cootieCatcherApp" ng-controller="cootieCtrl">
+		<label>Name:</label>
+		<input type="text" ng-model="yourName" placeholder="Enter a name here">
+		<hr>
+		<h1>Hello {{me}}!</h1>
+		<p> current selection = {{currentChoices[currentSelection]}} </p>
+		<p>{{count}} </p>		
+		
+
+		<div>
+			<h2>choose a color</h2>
+			<div id="main">
+				<div class="red" ng-show="questionNumber == 0" ng-mouseover="inc(10)"></div>
+				<div class="yellow" ng-click="questionNumber = questionNumber + 1"></div>
+				<div class="green" ng-mouseover=""></div>
+				<div class="cyan" ng-click="questionNumber = questionNumber - 1"></div>
+				<div class="red" ng-show="questionNumber == 1" style="width: 100px; height: 100px;background: #044;">testing</div>				
+			</div>
+			<div id="HUD">
+			</div>
+  		</div>
+  	</div>
+
+  </body>
+</html>

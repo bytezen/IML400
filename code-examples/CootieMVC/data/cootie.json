@@ -1,0 +1,34 @@
+{ 
+	"choices" : [
+					[
+						{"value": "red"},
+						{"value": "yellow"},
+						{"value": "green"},
+						{"value": "cyan"}
+					 ],
+					[
+						{"value": 2},
+						{"value": 4},
+						{"value": 6},
+						{"value": 8}
+					 ],
+					[
+						{"value": 1},
+						{"value": 3},
+						{"value": 5},
+						{"value": 7}
+					 ]
+				],
+	"fortunes" :[
+					"yeah, right",
+					"you wish",
+					"you know this is all a big hoax",
+					"the vision is a little blurry, insert more coins",
+					"fortune smiles upon the sun glades, or something",
+					"you talkin' bout my mama",
+					"what would samuel jackson do?",
+					"uh..."
+				]				
+
+}
+
