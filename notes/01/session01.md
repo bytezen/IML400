@@ -8,8 +8,8 @@ template: inverse
 class: center, middle
 
 # Creative Coding for the Web
-## Session 02
-## 09.04.15
+## Session 01
+## 01.11.16
 
 ---
 layout: false
@@ -44,86 +44,49 @@ template: inverse
 ## 1. Introductions
 
 ---
-
 layout: false
 
-.left-column[
-# Hello
-]
+class: middle, center
 
-.right-column[
-
-##Bio
-Call me ...  Rhazes
-
-I am a ... _old_ studying ...  _technology, science, math, art, gaming_
-
-]
+## ?? Do you know _pecha kucha_ ??
 
 ---
-
-layout: false
+class: middle, center
 
 .left-column[
-# Hello
+## Pecha Kucha
 ]
+
 
 .right-column[
 
-##Bio
-Call me ...  
 
-I am a ... studying ...  
+## "PechaKucha 20x20 is a simple presentation format where you show 20 images, each for 20 seconds. The images advance automatically and you talk along to the images."
+
+[Pecha Kucha](http://www.pechakucha.org/)
 
 ]
 
 ---
 
 .left-column[
-# Hello
+## Pecha Kucha
 ]
 
 .right-column[
 
-##Skillz
-* I am THE [wo]man in:  
-(Design, HTML, CSS, JS, the command line)
-
-* I've got some chops in:  
-(Design, HTML, CSS, JS, the command line)
-
-* I'm decent in:  
-(Design, HTML, CSS, JS, the command line)
-
-* I've done a little:  
-(Design, HTML, CSS, JS, the command line)
-
-* I've never heard of:  
-(Design, HTML, CSS, JS, the command line)
-
-* I am [not] familiar with these technologies  
-(templating enginges, sass/less, markdown, APIs)
-
+## Format
+* 120 seconds  
+  1. Call me ...  
+  2. I am a ... year, studying ...  
+  3. Skillz (Design, HTML, CSS, JS/programming)
+  4. When I grow up I want to
+  5. Best christmas/channukah/kwanzaa/winter-holiday/woo-hoo-no-class gift
+  6. an interesting piece of media: (beats, visuals, website, book, ??? )
 ]
 
 ---
 
-.left-column[
-# Hello
-]
-
-.right-column[
-
-## Goals
-* When I grow up I want to ...  
-
-* My goals for this class are ...
-
-* I have always wondered about ... 
-
-]
-
----
 
 template: inverse
 
@@ -476,6 +439,7 @@ layout: false
 .right-column[
 ## Reading
 ["As We May Think"](http://bit.do/vannevarBush) by Vannevar Bush
+[Aesthetics of the Internet](http://joi.ito.com/weblog/1997/06/19/aesthetics-of-t.html)
 
 ## Work through
 1. [Code Academy HTML & CSS](https://www.codecademy.com/tracks/web)

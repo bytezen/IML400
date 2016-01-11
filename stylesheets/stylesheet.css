@@ -245,3 +245,42 @@ a {
 .cf {
   zoom:1;
 }
+
+/* 
+rspell mods
+*/
+nav {
+  position: relative;
+  height: 100%;
+}
+
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #AAE531;
+  color: black;
+  height: 100%;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 3em;
+}
+
+nav li:before {
+  content:'';
+  margin-left: 0px;
+}
+
+nav li a {
+  display: inline;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #DDD;
+}
