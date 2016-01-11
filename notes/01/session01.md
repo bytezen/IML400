@@ -361,7 +361,7 @@ Remark is a web based slide presentation framework. Write your presentation in [
 ]
 
 ???
-THis is a note to show off cool stuff...
+This is a note to show off cool stuff...
 
 ---
 
@@ -372,10 +372,10 @@ THis is a note to show off cool stuff...
 .right-column[
 
 1. A server to serve files; tools for managing the file system  
-_storm_; _unix_
+_storm_; _unix_; _github_; _node js_
 
 2. Tools to create the files  
-any text editor, _sublime_, _light table_
+any text editor, _sublime_, _light table_, _atom_, _brackets_
 
 3. Tools for troubleshooting  
 _chrome developer tools_ 
@@ -435,6 +435,10 @@ class: center, middle
 we are going to walk through some of the basics of Git using the command line.  
 This will be both a tutorial on the CLI and Git
 
+* Let's:
+1. Make a small change to your Readme file
+2. Clone the class repo so that you have the course site on your machine 
+
 ## Resources
 Additional resources to help you outside of class:
 * [Try Git](https://try.github.io)  
@@ -448,32 +452,19 @@ Additional resources to help you outside of class:
 
 ---
 
-.right-column[
-## Build a simple webpage about your favorite animal
-
-Can't think of an animal??
-
-Your [spirit animal](http://www.spiritanimal.info/spirit-animal-quiz/)
-
-]
-
----
-
 .left-column[
-## Development Tools
+## Setting up your site
 ]
 
 .right-column[
+  ## Github Pages
 
-1. A server to serve files  
-
-2. Tools to create the files  
-
-3. Tools for troubleshooting  
-
-4. Tools for managing files and collaboration  
+  1. Navigate to [Github Pages](https://pages.github.com/)
+  2. Follow the instructions to create an 'User or Organization Site'
+  3. Let's clone your site to your machine and walk through a small change
 
 ]
+
 
 
 ---
