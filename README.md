@@ -1,5 +1,3 @@
 # IML400
 
-Hello class. Hopefully Github does not scare you. There are plenty of scary things in the world like...
-
-but this should not be one of them.
+Hello Class...this is going to be our first edit and subsequent commit to introduce you to the wonderful, rockin, awesome, supa dope world of Github...
