@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
-  /*color: #eaeaea;*/
+  color: #eaeaea;
   color: #ee000;
   font: 16px;
   line-height: 1.5;
@@ -260,7 +260,7 @@ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #AAE531;
+/*   background-color: #AAE531; */
   color: black;
   height: 100%;
 }
@@ -277,11 +277,11 @@ nav li:before {
 
 nav li a {
   display: inline;
-  color: black;
+  color: white;
   text-align: center;
   text-decoration: none;
 }
 
 nav li a:hover {
-  background-color: #DDD;
+  background-color: #AAE531;
 }
