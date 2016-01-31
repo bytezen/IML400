@@ -3,3 +3,4 @@ DS_STORE
 *.sublime-workspace
 Notes/
 draft/
+node_modules

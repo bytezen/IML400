@@ -1,9 +1,11 @@
 # Trojuin
 
-In this workshop you are going to be developing javascript skills in the while
+In this workshop you are going to be sharpening your javascript skills while
 solving a fun problem. The goals of this workshop are:
 
-* get familiar with javascript syntax
+* (re)introduce javascript syntax
 * learn to think procedurally to solve a problem
 * begin to understand the interaction of javascript / DOM and CSS
+* introduce you to the modulus operator and its use in solving conditional
+  branching problems
 
