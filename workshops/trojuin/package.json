@@ -4,7 +4,7 @@
   "description": "workshop for IML400; a twist on fizz buzz",
   "main": "index.js",
   "scripts": {
-    "run": "browser-sync --start server public --files \"public/css/*.css public/html/*.html public/scripts/*.js\""
+    "start": "browser-sync start --files \"public/css/*.css,public/html/*.html,public/scripts/*.js\" --server \"public\" "
   },
   "repository": {
     "type": "git",
