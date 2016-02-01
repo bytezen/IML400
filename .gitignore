@@ -4,3 +4,4 @@ DS_STORE
 Notes/
 draft/
 node_modules
+*.log
