@@ -17,6 +17,8 @@ this will pull the new files from the repository to your computer. You will find
 whodat_assignment
 ```
 
+Now, in Finder or Windows Exlporer you are going to add the assignment folder to your class website. You should have a workshops folder for your class website. (If not refer to the syllabus instructions again to remind yourself about the directory structure of your website. ) Copy the _whodat\_assignment_ folder into the _workshop_ directory of your website. You probably should also add an index file to the _workshop_ directory with a link to the whodat_assignment directory.
+
 Go into that directory. (Rememeber the linux command to change directories??)
 
 ```
@@ -51,7 +53,7 @@ I am giving you a series of "challenges" of increasing difficulty. Accomplish as
 To find help on the different methods that you can call and what they do go here:
 
 ##### Setting Attributes
-* [SetAttributeMethod](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute  
+* [SetAttributeMethod](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
 
 ##### Accessing Elements on the page
 There are different methods to do this as we explored in class. Feel free to use any that you are comfortable with. __Rememeber__ that if the method returns a list you will have to access the list item that you want!  
@@ -59,12 +61,15 @@ There are different methods to do this as we explored in class. Feel free to use
 * [getElementById](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)  
 * [getElementsByClassName](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)  
 * [getElementsByTagName](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByTagName)  
-
+* [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+* [querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
 
 
 
 #### Workshop Handin instructions
-Copy the whodat_assignment folder to __YOUR__ IML400 class repository. If you completed the first homework assignment then you set up a workshops directory. Create an index.html page in the workshops directory that has a link to the whodat\_assignment/index.html. In short what you are simply adding your assignment to your website. Remember that in order to see your assignment on your website you will have to run
+Copy the whodat_assignment folder to __YOUR__ IML400 class repository.  
+
+If you completed the first homework assignment then you set up a workshops directory. Create an index.html page in the workshops directory that has a link to the whodat\_assignment/index.html. In short you are simply adding your assignment to your website. Remember that in order to see your assignment on your website you will have to run
 
 ```
 git add .
