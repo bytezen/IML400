@@ -7,7 +7,6 @@ To do this you need to update your __CLASS__ repository.
 
 ```
 git pull
-
 ```
 
 this will pull the new files from the repository to your computer. You will find the files that you need in this folder:
@@ -90,7 +89,4 @@ git push
 ```
 
 You will enter that command from inside your class repository.  
-
-
-
 
