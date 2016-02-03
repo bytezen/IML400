@@ -3,5 +3,6 @@ DS_STORE
 *.sublime-workspace
 Notes/
 draft/
+dev/
 node_modules
 *.log
