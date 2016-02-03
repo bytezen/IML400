@@ -17,9 +17,10 @@ this will pull the new files from the repository to your computer. You will find
 whodat_assignment
 ```
 
-Now, in Finder or Windows Exlporer you are going to add the assignment folder to your class website. You should have a workshops folder for your class website. (If not refer to the syllabus instructions again to remind yourself about the directory structure of your website. ) Copy the _whodat\_assignment_ folder into the _workshop_ directory of your website. You probably should also add an index file to the _workshop_ directory with a link to the whodat_assignment directory.
+Now, in Finder or Windows Exlporer you are going to add the assignment folder to your class website. You should have a workshops folder for your class website. (If not refer to the syllabus instructions again to remind yourself about the directory structure of your website. ) Copy the _whodat\_assignment_ folder into the _workshop_ directory of your website. You probably should also add an index file to the _workshop_ directory with a link to the _whodat\_assignment_ directory.
 
-Go into that directory. (Rememeber the linux command to change directories??)
+Go into that directory.  
+(---sidebar---- Rememeber the linux command to change directories??)
 
 ```
 cd
@@ -30,8 +31,10 @@ shortcut to go to the parent directory of the directory that you are in:
 ```
 cd ..
 ```
+--- end sidebar ---)
 
-From inside the whodat_assignment folder enter:
+
+Go to the assignment folder in your class repository with Terminal. From inside the _whodat\_assignment folder enter:
 
 ```
 npm start
