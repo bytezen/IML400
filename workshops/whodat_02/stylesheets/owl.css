@@ -37,7 +37,7 @@
 
 */
 :root {
-  --cageSize: 300px;
+  --cageSize: 100px;
   --bodySizeRatio: .66667;   
   --bodyPosRatio: .16667;
   --bodyHorizRadiusRatio: .25;
@@ -50,12 +50,23 @@
   background-image: url(../images/400x400Grid.png);
 }
 
+body {
+  width: 450px;
+  overflow: hidden;
+}
+
+#container {
+  width:100%;
+}
+
+
 .cage {
   position:relative; 
   display: inline-block;
   width: var(--cageSize);
   height: var(--cageSize);
   float: left;
+  border-radius: 50%;
 /*   margin: auto; */
 }
 
@@ -71,14 +82,13 @@ section {
 /*       Layout       */
 /* ------------------ */
 
-
+ 
 .body {
   left: calc(var(--cageSize) * var(--bodyPosRatio));
   top: calc(var(--cageSize) * var(--bodyPosRatio));
-  width: calc(var(--cageSize) * var(--bodySizeRatio));;
-  height: calc(var(--cageSize) * var(--bodySizeRatio));;
-}
-
+  width: calc(var(--cageSize) * var(--bodySizeRatio));
+  height: calc(var(--cageSize) * var(--bodySizeRatio));
+} 
 
 .body {  
   /* firefox and safari
