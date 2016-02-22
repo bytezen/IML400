@@ -6,7 +6,7 @@
   "scripts": {
     "start": "browser-sync start --files \"public/*.html,public/css/*.css,public/html/*.html,public/scripts/*.js\" --server \"public\" ",
     "postcss": "postcss -u postcss-cssnext -o public/css/owl.css ./stylesheets/owl.css ",
-    "postcss-watch": "postcss -u postcss-cssnext -w ./stylesheets/owl.css -o public/css/owl.css "
+    "postcss-watch": "postcss -u postcss-cssnext -w './stylesheets/owl.css' -o public/css/owl.css "
   },
   "repository": {
     "type": "git",

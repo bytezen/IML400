@@ -21,12 +21,13 @@
 /* Color Palette */
 :root {
   --prpl_l2: #9575cd;
+  --prpl_d3: #4527a0;
 }
 
 
 /* Body Colors */
 :root {
-   --earColor: var(--prpl_l2);
+   --earColor: var(--prpl_d3);
 }
 
 /* Body Dimensions */
