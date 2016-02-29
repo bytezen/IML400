@@ -1,0 +1,234 @@
+/*
+ Purple theme adapted from:
+  http://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_theme_deep-purple
+*/
+
+.prpl-theme {background-color:#673ab7}
+.prpl-light {background-color:#ede7f6 }
+.prpl-dark {background-color:#311b92 }
+.prpl-l5 {background-color:#ede7f6 }
+.prpl-l4 {background-color:#d1c4e9 }
+.prpl-l3 {background-color:#b39ddb }
+.prpl-l2 {background-color:#9575cd }
+.prpl-l1 {background-color:#7e57c2 }
+.prpl-d1 {background-color:#5e35b1 }
+.prpl-d2 {background-color:#512da8 }
+.prpl-d3 {background-color:#4527a0 }
+.prpl-d4 {background-color:#311b92 }
+.beige {background-color: beige}
+
+
+/* Color Palette */
+
+
+/* Body Colors */
+
+/* Body Dimensions */
+/* Defaults: 
+   --cageSize: 300px
+
+
+
+*/
+
+
+
+.grid {
+  background-image: url(../images/400x400Grid.png);
+}
+
+.cage {
+  position:relative; 
+  display: inline-block;
+  width:100px;
+  height:100px;
+  float: left;
+/*   margin: auto; */
+}
+
+section {
+  position: absolute;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0px;
+/*   box-sizing: border-box; */
+}
+
+/* ------------------ */
+/*       Layout       */
+/* ------------------ */
+
+
+.body {
+  left:16.667px;
+  top:16.667px;
+  width:66.667px;
+  height:66.667px;;
+}
+
+
+.body {  
+  /* firefox and safari
+  -moz-border-radius: 50px / 100px;
+  -webkit-border-radius: 50px / 100px; 
+  */
+
+  /*border-radius: 75px / 100px;*/ /* horiz radius / vert radius */
+  border-radius:25px / 33.33px
+}
+
+.ear_L,.ear_R { top:9px }  /* .09 */
+.ear_L { left:16.667px }        /* .16667 */
+.ear_R { left:63.333px }
+
+.ear_L,.ear_R {
+  width: 0;
+  height: 0;
+  border-top-width:8.333px;
+  border-bottom-width:26.667px;
+
+}
+
+.ear_L {
+    border-left-width:20px;
+    border-left-color:#9575cd; 
+}
+
+.ear_R {  
+  border-right-width:20px; 
+  border-right-color:#9575cd; 
+}
+
+
+.eye_L, .eye_R {
+  top:30px;
+  width:23.333px;
+  height:23.333px;
+}
+
+/* position to leave 5px to the center line */
+.eye_L { left:26.667px; }
+.eye_R { left:50px; }
+
+
+.eye_L,.eye_R {
+  background-color: white;
+  border-radius:11.667px; /* width / 2.0 */
+}
+
+.pupil {
+  position: absolute;
+  left: 20%;
+  top: 40%;
+  background-color: #d1c4e9; /* prpl-l4 */
+  width: 40%;
+  height: 40%;
+}
+
+.pupil {  
+  border-radius: 50% ; /* width / 2.0 */
+}
+
+.beak {
+  top:36.667px;
+  left:47.667px;  
+/*   width: 14px; */
+/*   height: 60px; */  
+}
+
+.beak {
+  border-style: solid;
+  border-width: 0px;
+  border-color: transparent;
+}
+
+.beak {
+  border-top-width:20px;  
+  border-top-color: goldenrod;
+  border-left-width:2.333px; 
+  border-right-width:2.333px; 
+}
+
+.wing_L, .wing_R {
+  display: block;
+  top:40px;
+  background-color: #5e35b1; /* prpl-d1 */
+  background-color: #4527a0; /* prpl-d3 */
+  width:10px;
+  height:43.333px;
+/*   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; */
+  border-radius: 50% 50% 60% 60% / 90% 90% 50% 50%;
+}
+
+.wing_L {
+  left:15px;
+}
+
+.wing_R {
+  left:75px;
+}
+
+.leg_L,.leg_R {
+  background-color: goldenrod;
+  width:3.333px;
+  height:10px;
+  top:80px;
+}
+
+.leg_L { left:36.667px; }
+.leg_R { left:63.333px; }
+
+
+.foot_L,.foot_L:after,.foot_R, .foot_R:after {
+  border-width:5px;
+  border-color: transparent;
+  border-style: solid;
+  
+}
+
+.foot_L, .foot_R {
+  top:80px;  
+  width:0;
+  height:0;
+  border-bottom-width:3.333px; 
+  border-bottom-color: red;
+  border-bottom-style: solid ;
+}
+
+.foot_L:after, .foot_R:after {
+  position: absolute;
+  content:'';
+  left:-5px; 
+  top:2.667px;
+  width:0;
+  height:0;
+  border-top-width:6.667px; 
+  border-top-color: red;
+  border-top-style: solid ;  
+}
+
+.foot_L { left:33.333px; 
+}
+
+.foot_R { left:60px; }
+
+/*.armature.foot_L {
+  -webkit-transform: rotate(0deg);
+}*/
+
+/* ------------------ */
+/*       Shapes       */
+/* ------------------ */
+
+.ghost-center {
+  position: relative;
+}
+
+.ghost-center:before {
+  content: " ";
+  display: inline-block;
+  height: 100%;
+  width:1%;
+  vertical-align: middle;
+}
+
