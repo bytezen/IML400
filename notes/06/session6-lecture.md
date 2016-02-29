@@ -118,11 +118,29 @@ in javascript objects are denoted by:
 }
 
 //propertyName is always a string
-//propertyValue can be anything: string, number, function even another object
+//propertyValue can be anything: string, number,
+//function even another object
 ```
 
 ]
+---
+.left-column[
+## whodat object
+]
 
+.right-column[
+Furthermore we could create an object that would contain all the data needed to create an owl
+```
+var owlConfig = {
+    "beak": { "color": 'goldenrod', "length": 'medium' },
+    "body": { "color": 'red'},
+    "eyes": [{"position": 'L', "pupil": {"x": 10, "y": 10} },
+    	  {"position": 'R', "pupil": {"x":10, "y":80}}],
+    "legs": [{"position": 'L', "color": 'blue'},
+    	  {"position":'R', "color": 'darkblue'}]
+}
+```
+]
 
 ---
 
